@@ -1,7 +1,7 @@
 
 #End Users - getting list of users
 
-$ou = "OU=End_Users,DC=flatironcorp,DC=com"
+$ou = "Distinguished name"
 
 $Users = Get-AdUser -filter {Enabled -eq $TRUE} -Searchbase $ou  -Properties SamAccountName,whenChanged,lastLogonDate,displayname,whenCreated,distinguishedname,AccountExpirationdate | 
     Where-Object {

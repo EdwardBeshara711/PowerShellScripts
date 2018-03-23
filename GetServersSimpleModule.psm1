@@ -1,6 +1,3 @@
-# GET-ADComputer -Filter { OperatingSystem -Like 'Windows*Server*' } -Properties Name,OperatingSystem,description |
-# Select Name,OperatingSystem, description | sort-object -property name,OperatingSystem, description | sort-object -property name | Out-GridView
-
 
 function Get-Servers {
 

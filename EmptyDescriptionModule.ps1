@@ -24,7 +24,7 @@ function Get-EmptyDescriptionInfo {
                     $useraccount = Get-ADUser -Searchbase $OrganizationalUnit -LDAPFilter $filter -Properties name
                     $properties = @{
                         Account = $account
-                        Descriptioin = $useraccount.description
+                        Description = $useraccount.description
                     }
                 }
                 catch {

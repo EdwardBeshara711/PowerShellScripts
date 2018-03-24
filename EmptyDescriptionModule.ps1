@@ -30,7 +30,7 @@ function Get-EmptyDescriptionInfo {
                 catch {
                     $properties = @{
                         Account = $null
-                        Descriptioin = $nulle
+                        Description = $null
                     
                     }
                 }

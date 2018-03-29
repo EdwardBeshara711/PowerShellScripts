@@ -1,7 +1,7 @@
 
 #End Users - getting list of users
 
-$ou = "OU=End_Users,DC=flatironcorp,DC=com"
+$ou = "OU=End_Users,DC=contoso,DC=com"
 
 $Users = Get-AdUser -filter {Enabled -eq $TRUE} -Searchbase $ou  -Properties SamAccountName,
     whenChanged,

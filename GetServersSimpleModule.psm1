@@ -15,7 +15,9 @@ function Get-Servers {
                 Filter = "OperatingSystem -Like 'Windows*Server*'"
             }
 
-            $serverList = GET-ADComputer @filter -Properties Name,OperatingSystem,description | Select-Object Name,OperatingSystem,description | sort name
+            $serverList = GET-ADComputer @filter -Properties Name,OperatingSystem,description |
+                Select-Object Name,OperatingSystem,description |
+                sort name
 
             foreach ($server in $serverList) {
 

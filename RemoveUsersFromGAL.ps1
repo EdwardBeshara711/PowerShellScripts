@@ -6,6 +6,7 @@ $users = get-aduser -filter * -SearchBase $SearchBase  -properties samaccountnam
     Where-Object {$_.msExchHideFromAddressLists -eq  $false} |
     Select-Object samaccountname,msExchHideFromAddressLists 
 
+#making a pretty list below to insert into email [needs to be a string]
 
 $i=0
 
@@ -16,7 +17,7 @@ $list = Foreach ($user in $users){
 
 $StringList = $list | Out-String
 
-
+#splatting mail properties for send-mailmessage
 $mailProperties = @{
     To = "support@contoso.com"
     From = "automation@contoso.com"
@@ -27,17 +28,23 @@ $mailProperties = @{
     SmtpServer = "mail.contoso.com"
 }
 
+
 if(!$users) {
+    #creating log file
     $emptyMessage = "No Users Removed From GAL"
     $emptyMessage | out-file C:\ScriptLogs\GALCleanUP\$file"Removed_FromGAL.txt"
 
 } else {
+
+    #doing the remove from GAL action and creating log
 	$users | out-file C:\ScriptLogs\GALCleanUP\$file"Removed_FromGAL.txt"
 	
     Foreach ($account in $users){
         $username = $account.samaccountname
         Set-aduser -identity $username -Replace @{msExchHideFromAddressLists="TRUE"}
-    }    
+    }
+    
+    Send-MailMessage @mailProperties
 }
 
 Clear-Variable $users
